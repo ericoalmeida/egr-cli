@@ -4,7 +4,7 @@ const src = filesystem.path(__dirname, '..')
 
 const cli = async cmd =>
   system.run('node ' + filesystem.path(src, 'bin', 'egr') + ` ${cmd}`)
- 
+
 test('outputs version', async () => {
   const output = await cli('--version')
   expect(output).toContain('0.0.1')
@@ -18,7 +18,7 @@ test('outputs help', async () => {
 test('generate new page', async () => {
   const output = await cli('generate:page UserProfile')
 
-  expect(output).toContain('Generated UserProfile page')
+  expect(output).toContain('Generated src/pages/UserProfile')
   const userProfile = filesystem.read('src/pages/UserProfile/index.tsx')
 
   expect(userProfile).toContain(`const UserProfile: React.FC = () => {`)
@@ -31,7 +31,7 @@ test('generate new page', async () => {
 test('generate new component', async () => {
   const output = await cli('generate:component Cart')
 
-  expect(output).toContain('Generated Cart component')
+  expect(output).toContain('Generated src/components/Cart')
   const cart = filesystem.read('src/components/Cart/index.tsx')
 
   expect(cart).toContain(`const Cart: React.FC = () => {`)
