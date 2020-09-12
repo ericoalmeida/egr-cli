@@ -4,7 +4,7 @@ const src = filesystem.path(__dirname, '..')
 
 const cli = async cmd =>
   system.run('node ' + filesystem.path(src, 'bin', 'egr') + ` ${cmd}`)
-
+ 
 test('outputs version', async () => {
   const output = await cli('--version')
   expect(output).toContain('0.0.1')
@@ -15,15 +15,28 @@ test('outputs help', async () => {
   expect(output).toContain('0.0.1')
 })
 
-test('generates file', async () => {
-  const output = await cli('generate foo')
+test('generate new page', async () => {
+  const output = await cli('generate:page UserProfile')
 
-  expect(output).toContain('Generated file at models/foo-model.ts')
-  const foomodel = filesystem.read('models/foo-model.ts')
+  expect(output).toContain('Generated UserProfile page')
+  const userProfile = filesystem.read('src/pages/UserProfile/index.tsx')
 
-  expect(foomodel).toContain(`module.exports = {`)
-  expect(foomodel).toContain(`name: 'foo'`)
+  expect(userProfile).toContain(`const UserProfile: React.FC = () => {`)
+  expect(userProfile).toContain(`return <Container /> `)
+  expect(userProfile).toContain(`export { UserProfile }`)
 
-  // cleanup artifact
-  filesystem.remove('models')
+  filesystem.remove('src/pages')
+})
+
+test('generate new component', async () => {
+  const output = await cli('generate:component Cart')
+
+  expect(output).toContain('Generated Cart component')
+  const cart = filesystem.read('src/components/Cart/index.tsx')
+
+  expect(cart).toContain(`const Cart: React.FC = () => {`)
+  expect(cart).toContain(`return <Container /> `)
+  expect(cart).toContain(`export { Cart }`)
+
+  filesystem.remove('src/components')
 })
