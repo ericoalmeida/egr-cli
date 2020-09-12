@@ -14,7 +14,7 @@ CLI desenvolvida para criação de componentes e paginas em projetos react e rea
 Confira a [documentação](https://github.com/ericoalmeida/egr-cli/blob/master/docs/commands.md) da CLI.
 
 
-## Clonando o projeto
+### Clonando o projeto
 
 - Clone o repositório
 ```shell
@@ -26,6 +26,8 @@ git clone https://github.com/ericoalmeida/egr-cli.git
 cd egr-cli
 ```
 
+#### Instalando as depedências
+> Caso utilize **Yarn**
 - Instale as dependências
 ```shell
 yarn install
@@ -36,4 +38,13 @@ yarn install
 yarn link
 ```
 
+> Caso utilize **npm**
+- Instale as dependências
+```shell
+yarn run install
+```
 
+- Ative a CLI
+```shell
+npm run link
+```
