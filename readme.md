@@ -1,20 +1,14 @@
-# egr CLI
+# egr | command line interface (CLI)
 
-A CLI for egr.
+CLI desenvolvida para criação de componentes e paginas em projetos react e react-native.
 
-## Customizing your CLI
+## Bibliotecas utilizadas
 
-Check out the documentation at https://github.com/infinitered/gluegun/tree/master/docs.
+- Node.js
+- Gluegun
+- Typescript
+- Jest
+- Prettier
+- Tslint
 
-## Publishing to NPM
-
-To package your CLI up for NPM, do this:
-
-```shell
-$ npm login
-$ npm whoami
-$ npm lint
-$ npm test
-(if typescript, run `npm run build` here)
-$ npm publish
-```
+Confira a [documentação](https://github.com/ericoalmeida/egr-cli/blob/master/docs/commands.md) da CLI.
