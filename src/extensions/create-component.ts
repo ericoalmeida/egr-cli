@@ -1,7 +1,11 @@
 import { GluegunToolbox } from 'gluegun';
 
 module.exports = (toolbox: GluegunToolbox) => {
-    const { filesystem: {read}, print: {success, error}, template: {generate} } = toolbox;
+    const {
+        filesystem: { read },
+        print: { success, error },
+        template: { generate }
+    } = toolbox;
 
     async function isReactNative() {
         const packageList = await read('package.json', 'json');
@@ -10,12 +14,12 @@ module.exports = (toolbox: GluegunToolbox) => {
     }
 
     async function createComponent(folder: String, name: String) {
-        if (!folder){
+        if (!folder) {
             error('Folder must be specified.');
             return;
         }
 
-        if (!name){
+        if (!name) {
             error('Name must be specified.');
             return;
         }
@@ -24,17 +28,19 @@ module.exports = (toolbox: GluegunToolbox) => {
             template: 'component.js.ejs',
             target: `${folder}/${name}/index.tsx`,
             props: { name }
-        })
+        });
 
-        const template = (await isReactNative()) ? 'styles-rn.js.ejs' : 'styles-react.js.ejs';
+        const template = (await isReactNative())
+            ? 'styles-rn.js.ejs'
+            : 'styles-react.js.ejs';
 
         await generate({
             template,
-            target: `${folder}/${name}/styles.ts`,
-         })
+            target: `${folder}/${name}/styles.ts`
+        });
 
-         success(`Generated ${folder}/${name}.`)
+        success(`Generated ${folder}/${name}.`);
     }
 
     toolbox.createComponent = createComponent;
-}
+};

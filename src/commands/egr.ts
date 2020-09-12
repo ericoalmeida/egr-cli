@@ -1,12 +1,12 @@
-import { GluegunCommand } from 'gluegun'
+import { GluegunCommand } from 'gluegun';
 
 const command: GluegunCommand = {
-  name: 'egr',
-  run: async toolbox => {
-    const { print } = toolbox
+    name: 'egr',
+    run: async toolbox => {
+        const { print } = toolbox;
 
-    print.info('Bem-vindo à EGR-CLI')
-  }
-}
+        print.info('Bem-vindo à EGR-CLI');
+    }
+};
 
-module.exports = command
+module.exports = command;
